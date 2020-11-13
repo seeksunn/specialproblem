@@ -102,7 +102,7 @@ p {font-size: 20px;}
     <div id="Random" class="w3-container menu w3-padding-32 w3-white">
       <div class='w3-container w3-padding-64 w3-content w3-center' id='playpart'>
         <div id='word' style='font-size: 40px; color: black;'>
-          สุ่มคำจากฐานข้อมูลทั้งหมด 100000 คำ <br> เพื่อฝึกฝนในการอ่านออกเสียง<br><br>
+          สุ่มคำจากฐานข้อมูลทั้งหมด<br><br>
           <form action='random_word.php' method='GET'>
             <input type="submit" value='Go!' name='random' class='w3-button w3-black w3-round w3-padding-large w3-large'></input>
           </form>
