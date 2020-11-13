@@ -59,6 +59,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <script>  
     function pickword(){   
         var words;     
+        document.getElementById("console").innerHTML = ""; 
         document.getElementById("readBtn").style.display = "inline"; 
         document.getElementById("speakBtn").style.display = "inline";        
         var xhttp;
@@ -79,9 +80,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     }
     function speechToText() {
         if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-            alert("speek");
-            document.getElementById("speakBtn").innerHTML = "Listening...";
-            document.getElementById("continueBtn").style.display = "none"; 
+            
+            document.getElementById("speakBtn").innerHTML = "Listening..."; 
+            document.getElementById("continueBtn").style.display = "none";            
             document.getElementById("speakBtn").disabled = true;
             var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
             var recognition = new SpeechRecognition();
@@ -93,12 +94,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             }
             recognition.onresult = function(event) {
                 var result = event.results[0][0].transcript;
+                document.getElementById("speakBtn").innerHTML = "Speak";
+                document.getElementById("continueBtn").style.display = "inline";  
                 if(result == document.getElementById("word").innerHTML) {
                     document.getElementById("console").innerHTML = "คุณออกเสียงถูกต้อง";
                     document.getElementById("speakBtn").disabled = false;
-                    document.getElementById("speakBtn").style.display = "none";
-                    document.getElementById("speakBtn").innerHTML = "Speak";                    
-                    document.getElementById("continueBtn").style.display = "inline";                       
+                    document.getElementById("speakBtn").style.display = "none";                                      
+                                          
                 } else {
                     document.getElementById("console").innerHTML = "คุณออกเสียงผิด กรุณาลองใหม่อีกครั้ง";
                     document.getElementById("speakBtn").disabled = false;
