@@ -1,0 +1,9 @@
+download mongodb driver -> https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
+
+see which version -> https://www.tutorialspoint.com/mongodb/mongodb_php.htm
+
+drop driver in -> your_path\php\ext
+
+edit php.ini file
+add this line  -> extension = php_mongo.dll
+
