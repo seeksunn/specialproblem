@@ -76,6 +76,7 @@ foreach ($rows as $row) {
 <script>  
     var wordsArray = [<?php echo '"'.implode('","', $words).'"' ?>];
     function pickword(){    
+        document.getElementById("console").innerHTML = ""; 
         document.getElementById("continueBtn").style.display = "none";    
         document.getElementById("readBtn").style.display = "inline"; 
         document.getElementById("speakBtn").style.display = "inline";
@@ -101,8 +102,7 @@ foreach ($rows as $row) {
         window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
     }
     function speechToText() {
-        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-            alert("speek");
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {                       
             document.getElementById("speakBtn").innerHTML = "Listening...";
             document.getElementById("continueBtn").style.display = "none"; 
             document.getElementById("speakBtn").disabled = true;
@@ -116,11 +116,11 @@ foreach ($rows as $row) {
             }
             recognition.onresult = function(event) {
                 var result = event.results[0][0].transcript;
+                document.getElementById("speakBtn").innerHTML = "Speak";
                 if(result == document.getElementById("word").innerHTML) {
                     document.getElementById("console").innerHTML = "คุณออกเสียงถูกต้อง";
                     document.getElementById("speakBtn").disabled = false;
-                    document.getElementById("speakBtn").style.display = "none";
-                    document.getElementById("speakBtn").innerHTML = "Speak";                    
+                    document.getElementById("speakBtn").style.display = "none";                                        
                     document.getElementById("continueBtn").style.display = "inline";                       
                 } else {
                     document.getElementById("console").innerHTML = "คุณออกเสียงผิด กรุณาลองใหม่อีกครั้ง";
