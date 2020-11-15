@@ -83,9 +83,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             
             document.getElementById("speakBtn").innerHTML = "Listening..."; 
             document.getElementById("continueBtn").style.display = "none";            
-            document.getElementById("speakBtn").disabled = true;
+            document.getElementById("speakBtn").disabled = true;     
             var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-            var recognition = new SpeechRecognition();
+            var recognition = new SpeechRecognition();        
+            var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList            
+            var targets = [document.getElementById("word").innerHTML,document.getElementById("word").innerHTML];
+            var grammar = '#JSGF V1.0; grammar targets; public <target> = ' + targets.join(' | ') + ' ;';
+            var speechRecognitionList = new SpeechGrammarList();
+            speechRecognitionList.addFromString(grammar, 1);
+            recognition.grammars = speechRecognitionList;
+
+
             recognition.lang = 'en-US';
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
@@ -102,7 +110,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
                     document.getElementById("speakBtn").style.display = "none";                                      
                                           
                 } else {
-                    document.getElementById("console").innerHTML = "คุณออกเสียงผิด กรุณาลองใหม่อีกครั้ง";
+                    document.getElementById("console").innerHTML = "คำที่ได้ยิน : "+result+"<br>คุณออกเสียงผิด กรุณาลองใหม่อีกครั้ง";
                     document.getElementById("speakBtn").disabled = false;
                 }
             }

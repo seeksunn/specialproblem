@@ -107,14 +107,16 @@ foreach ($rows as $row) {
             document.getElementById("continueBtn").style.display = "none"; 
             document.getElementById("speakBtn").disabled = true;
             var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-            var recognition = new SpeechRecognition();
+            var recognition = new SpeechRecognition();        
+           
             recognition.lang = 'en-US';
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
             recognition.onspeechend = function() {
+                document.getElementById("console").innerHTML = "กำลังดำเนินการ....";
                 recognition.stop();                 
             }
-            recognition.onresult = function(event) {
+            recognition.onresult = function(event) {                
                 var result = event.results[0][0].transcript;
                 document.getElementById("speakBtn").innerHTML = "Speak";
                 if(result == document.getElementById("word").innerHTML) {
@@ -123,7 +125,7 @@ foreach ($rows as $row) {
                     document.getElementById("speakBtn").style.display = "none";                                        
                     document.getElementById("continueBtn").style.display = "inline";                       
                 } else {
-                    document.getElementById("console").innerHTML = "คุณออกเสียงผิด กรุณาลองใหม่อีกครั้ง";
+                    document.getElementById("console").innerHTML = "คำที่ได้ยิน : "+result+"<br>คุณออกเสียงผิด กรุณาลองใหม่อีกครั้ง";
                     document.getElementById("speakBtn").disabled = false;
                 }
             }
